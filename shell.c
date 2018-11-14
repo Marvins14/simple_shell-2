@@ -25,9 +25,7 @@ void shell(void)
 		write(1, "$ ", 2);
 		line = _getline();
 		args = split_line(line);
-		if (check_for_builtins(args, line) == 1)
-			continue;
-		status = launch_prog(args);
+		status = execute_prog(args, line);
 		free(line);
 		free(args);
 	} while (status);
