@@ -9,6 +9,7 @@
 #include "shell.h"
 
 #define LINE_SIZE 1024
+#define TOKENS_BUFFER_SIZE 64
 
 /**
  * shell - Infinite loop that runs shell
@@ -24,6 +25,8 @@ void shell(void)
 		write(1, "$ ", 2);
 		line = _getline();
 		args = split_line(line);
+		if (check_for_builtins(args, line) == 1)
+			continue;
 		status = launch_prog(args);
 		free(line);
 		free(args);

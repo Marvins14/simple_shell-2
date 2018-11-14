@@ -8,7 +8,7 @@
 #include <sys/wait.h>
 #include "shell.h"
 
-#define TOKEN_BUFFER_SIZE 64
+#define TOKENS_BUFFER_SIZE 64
 #define TOKEN_DELIMITERS " \t\r\n\a"
 
 /**
@@ -18,7 +18,7 @@
 char *_getline(void)
 {
 	int temp;
-	char *line;
+	char *line = NULL;
 	size_t size = 0;
 
 	temp = getline(&line, &size, stdin);
@@ -36,7 +36,7 @@ char *_getline(void)
  */
 char **split_line(char *line)
 {
-	size_t buffer_size = TOKEN_BUFFER_SIZE;
+	size_t buffer_size = TOKENS_BUFFER_SIZE;
 	char **tokens = malloc(sizeof(char *) * buffer_size);
 	char *token;
 	int pos = 0;
@@ -55,6 +55,30 @@ char **split_line(char *line)
 	}
 	tokens[pos] = NULL;
 	return (tokens);
+}
+/**
+ * check_for_builtins - Checks for builtins
+ * @args: Arguments passed from prompt
+ * @line: Buffer with line of input from user
+ * Return: 1 if builtins exist, 0 if they don't
+ */
+int check_for_builtins(char **args, char *line)
+{
+	builtins_t list[] = {
+		{"exit", exit_shell},
+		{NULL, NULL}
+	};
+	int i;
+
+	for (i = 0; list[i].arg != NULL; i++)
+	{
+		if (_strcmp(list[i].arg, args[0]) == 0)
+		{
+			list[i].builtin(args, line);
+			return (1);
+		}
+	}
+	return (0);
 }
 /**
  * launch_prog - Forks and launches unix cmd
