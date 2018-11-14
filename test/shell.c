@@ -15,8 +15,8 @@ int main(void)
 	char *bin = "/bin/";
 	char *cwd = "./";
 	pid_t child;
-	char* n;
-
+	char *n;
+	char *slash = "/";
 	while (1)
 	{
 		printf("$ ");
@@ -30,13 +30,11 @@ int main(void)
 		if (child == 0)
 		{
 			n = find_path(user_input);
-			printf("%s\n", n);
+			printf("SHELL - N = %s\n", n);
 			if (n != "no")
 			{
-				printf("%s", n);
-				strcat(n, user_input);
-				printf("\n%s", n);
 				argv[0] = n;
+				argv[1] = user_input;
 				if (execve(argv[0], argv, NULL) == -1)
 					return (-1);
 			}

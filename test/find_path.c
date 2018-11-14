@@ -9,7 +9,6 @@ char* find_path(char *user_input)
 {
 	DIR *dir;
 	struct dirent *sd;
-	char *cwd = ".";
 	char *file = NULL;
 	int i = 0;
 	const char delim[2] = ":";
@@ -17,14 +16,15 @@ char* find_path(char *user_input)
 	char *built_ins;
 	int n = 0;
 	char s[2] = " ";
+	int a = 0;
 
+	while (user_input[a])
+		a++;
 	p = getenv("PATH");
 	built_ins = strtok(p, ":");
-	printf("%s\n", built_ins);
 	while (built_ins)
 	{
 		dir = opendir(built_ins);
-		printf("%s\n", built_ins);
 		if (!dir)
 		{
 			printf("Error! Unable to open directory.\n");
@@ -32,28 +32,25 @@ char* find_path(char *user_input)
 		}
 		while (sd = readdir(dir))
 		{
-			while (sd->d_name[i])
+			printf("FIND - %s/", built_ins);
+			printf("%s\n", sd->d_name);
+			for (i = 0; sd->d_name[i] && user_input[i]; i++)
 			{
-				if (sd->d_name[i] == user_input[i])
-					i++;
-				if((sd->d_name[i] != s[0]) && (sd->d_name[i] != user_input[i]))
-					i = 0;
 				if (sd->d_name[i] != user_input[i])
-				{
-					i = 0;
 					break;
+				if (sd->d_name[i] == user_input[i])
+				{
+					printf("A: %d %s\n", a, user_input);
+					printf("I: %d\n%s", (i + 1), sd->d_name);
 				}
+				if (((i + 1) == (a - 1)) && !(sd->d_name[i +1]))
+					return (built_ins);
 			}
-			if (i > 0)
-			{
-				closedir(dir);
-				return(built_ins);
-			}
-			built_ins = strtok(NULL, ":");
 		}
 		closedir(dir);
+		built_ins = strtok(NULL, ":");
 	}
-	dir = opendir(cwd);
+	dir = opendir(".");
 	if (!dir)
 	{
 		printf("Error! Unable to open directory.\n");
