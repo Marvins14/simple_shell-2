@@ -20,17 +20,17 @@ void shell(void)
 	char *line;
 	char **args;
 	int status;
-	char *n;
+	char *tmp = NULL;
+	int i = 1;
 
 	do {
 		write(1, "$ ", 2);
 		line = _getline();
 		args = split_line(line);
-		printf("args[0]: %s\n", args[0]);
-		args[0] = find_path(args[0]);
-		printf("return: %s\n", args[0]);
+		args[0] = find_path(args[0], tmp);
 		status = execute_prog(args, line);
 		free(line);
 		free(args);
 	} while (status);
+		free(tmp);
 }

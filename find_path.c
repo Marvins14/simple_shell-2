@@ -6,7 +6,7 @@
 #include <unistd.h>
 #include "shell.h"
 
-char* find_path(char *filename)
+char* find_path(char *filename, char *tmp)
 {
 	DIR *dir;
 	struct dirent *sd;
@@ -18,9 +18,29 @@ char* find_path(char *filename)
 
 	while (filename[len])
 		len++;
-	path = getenv("PATH");
-	printf("getenv: %s\n", path);
-	file_path = strtok(path, ":");
+	if (!tmp)
+	{
+		path = getenv("PATH");
+		tmp = malloc(sizeof(char) * 100);
+		while (path[i])
+		{
+			tmp[i] = path[i];
+			i++;
+			tmp[i] = '\0';
+		}
+		i = 0;
+	}
+	else
+	{
+		while (tmp[i])
+		{
+			path[i] = tmp[i];
+			i++;
+			path[i] = '\0';
+		}
+		i = 0;
+	}
+	file_path = strtok(tmp, ":");
 	while (file_path)
 	{
 		dir = opendir(file_path);
