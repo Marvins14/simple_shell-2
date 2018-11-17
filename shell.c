@@ -20,11 +20,15 @@ void shell(void)
 	char *line;
 	char **args;
 	int status;
+	char *n;
 
 	do {
 		write(1, "$ ", 2);
 		line = _getline();
 		args = split_line(line);
+		printf("args[0]: %s\n", args[0]);
+		args[0] = find_path(args[0]);
+		printf("return: %s\n", args[0]);
 		status = execute_prog(args, line);
 		free(line);
 		free(args);
