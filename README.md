@@ -39,7 +39,7 @@ $
 
 ## Example
 
-![Example](https://giphy.com/gifs/1tjn23NwMZboA6cz4E/embed.gif)
+![example](https://media.giphy.com/media/1tjn23NwMZboA6cz4E/giphy.gif)
 
 ---
 
