@@ -1,11 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
-#include <stddef.h>
-#include <errno.h>
-#include <sys/types.h>
-#include <sys/wait.h>
 #include "shell.h"
 
 #define LINE_SIZE 1024
@@ -28,7 +20,7 @@ void shell(int ac, char **av)
 	int flow;
 
 	do {
-		write(1, "$ ", 2);
+		prompt();
 		line = _getline();
 		args = split_line(line);
 		flow = bridge(args[0], args, line);

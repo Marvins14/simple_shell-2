@@ -1,5 +1,18 @@
 #ifndef SHELL
 #define SHELL
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include <stddef.h>
+#include <errno.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#define TOKENS_BUFFER_SIZE 64
+#define TOKEN_DELIMITERS " \t\r\n\a"
+
+
 /**
  * struct builtins - Has builtins and associated funcs
  * @arg: Builtins name

@@ -48,11 +48,11 @@ $
 
 File|Description
 ---|---
-[README.md](./README.md)|File description
-File|File description
-File|File description
-File|File description
-File|File description
+[shell.c](./shell.c)|executes the shell
+[shell.h](./shell.h)|header
+[builtins.c](./builtins.c)|built-in functions
+[helpers.c](./helpers.c)|helper functions
+[man_1_simple_shell](./man_1_simple_shell)|man page
 
 ---
 
@@ -105,9 +105,7 @@ File|File description
 
 ### 7. What happens when you type ls -l in the shell
 * Blog:
-	- [Derrick Gee]()
-	- [Andrew Lindburg]()
-	- [Russell Molimock]()
+	- [Medium]()
 
 ---
 
