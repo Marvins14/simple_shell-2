@@ -13,7 +13,7 @@ typedef struct builtins
 void shell(int ac, char **av, char **env);
 char *_getline(void);
 char **split_line(char *line);
-int execute_prog(char **args, char *line, char **env);
+int execute_prog(char **args, char *line, char **env, int flow);
 int check_for_builtins(char **args, char *line, char **env);
 int launch_prog(char **args);
 void exit_shell(char **args, char *line, char **env);
