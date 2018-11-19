@@ -13,13 +13,15 @@
 
 /**
  * shell - Infinite loop that runs shell
+ * @ac: Arg count
+ * @av: args passed to shell at beginning of prog
  * Return: Void
  */
-void shell(void)
+void shell(int ac, char **av)
 {
 	char *line;
 	char **args;
-	int status;
+	int status = 1;
 	char *tmp = NULL;
 	char *er;
 	char *filename;
@@ -30,10 +32,10 @@ void shell(void)
 		write(1, "$ ", 2);
 		line = _getline();
 		args = split_line(line);
-		filename = args[0];
-		flow = bridge(filename, args, line);
+		flow = bridge(args[0], args, line);
 		if (flow == 2)
 		{
+			filename = args[0];
 			args[0] = find_path(args[0], tmp, er);
 			if (args[0] == er)
 			{
@@ -44,5 +46,8 @@ void shell(void)
 		free(line);
 		free(args);
 	} while (status);
-		free(tmp);
+	if (!ac)
+		(void)ac;
+	if (!av)
+		(void)av;
 }
