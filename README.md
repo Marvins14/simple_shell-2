@@ -53,6 +53,7 @@ File|Description
 [builtins.c](./builtins.c)|built-in functions
 [helpers.c](./helpers.c)|helper functions
 [man_1_simple_shell](./man_1_simple_shell)|man page
+[find_path.c](./find_path.c)|finds PATH
 
 ---
 
