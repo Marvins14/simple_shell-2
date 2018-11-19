@@ -18,5 +18,6 @@ int check_for_builtins(char **args, char *line);
 int launch_prog(char **args);
 void exit_shell(char **args, char *line);
 int _strcmp(char *s1, char *s2);
-char* find_path(char *args, char *tmp);
+char* find_path(char *args, char *tmp, char *er);
+char* search_cwd(char *filename);
 #endif

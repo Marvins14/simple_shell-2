@@ -21,13 +21,18 @@ void shell(void)
 	char **args;
 	int status;
 	char *tmp = NULL;
-	int i = 1;
+	char *er;
+	char *filename;
 
+	er = "error";
 	do {
 		write(1, "$ ", 2);
 		line = _getline();
 		args = split_line(line);
-		args[0] = find_path(args[0], tmp);
+		filename = args[0];
+		args[0] = find_path(args[0], tmp, er);
+		if (args[0] == er)
+			args[0] = search_cwd(filename);
 		status = execute_prog(args, line);
 		free(line);
 		free(args);
