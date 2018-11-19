@@ -36,7 +36,7 @@ void env_shell(char **args, char *line, char **env);
 int _strcmp(char *s1, char *s2);
 char *find_path(char *args, char *tmp, char *er);
 char *search_cwd(char *filename);
-int bridge(char *check, char **args, char *line);
+int bridge(char *check, char **args);
 void prompt(void);
 int builtins_checker(char **args);
 #endif
