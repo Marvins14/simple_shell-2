@@ -105,7 +105,7 @@ File|Description
 
 ### 7. What happens when you type ls -l in the shell
 * Blog:
-	- [Medium]()
+	- [Medium](https://medium.com/@antisyllogism/what-happens-when-you-type-ls-l-in-the-shell-21a089cf0eb4)
 
 ---
 
