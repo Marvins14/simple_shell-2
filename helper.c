@@ -111,12 +111,12 @@ int launch_prog(char **args)
  */
 int builtins_checker(char **args)
 {
+	int i;
 	builtins_t list[] = {
 		{"exit", exit_shell},
 		{"env", env_shell},
 		{NULL, NULL}
 	};
-	int i;
 
 	for (i = 0; list[i].arg != NULL; i++)
 	{

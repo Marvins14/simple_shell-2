@@ -13,8 +13,7 @@
 #define TOKENS_BUFFER_SIZE 64
 #define LINE_SIZE 1024
 #define TOKEN_DELIMITERS " \t\r\n\a"
-
-
+extern char **environ;
 /**
  * struct builtins - Has builtins and associated funcs
  * @arg: Builtins name
@@ -39,4 +38,6 @@ char *search_cwd(char *filename);
 int bridge(char *check, char **args, char *line);
 void prompt(void);
 int builtins_checker(char **args);
+int _getenv(char *env);
+char *_strstr(char *haystack, char *needle);
 #endif
