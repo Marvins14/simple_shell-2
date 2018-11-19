@@ -23,6 +23,7 @@ void shell(void)
 	char *tmp = NULL;
 	char *er;
 	char *filename;
+	int flow;
 
 	er = "error";
 	do {
@@ -30,10 +31,19 @@ void shell(void)
 		line = _getline();
 		args = split_line(line);
 		filename = args[0];
-		args[0] = find_path(args[0], tmp, er);
-		if (args[0] == er)
-			args[0] = search_cwd(filename);
-		status = execute_prog(args, line);
+		flow = bridge(filename, args, line);
+		if (flow == 1)
+		{
+			status = execute_prog(args, line);
+		}
+		else if (flow == 2)
+		{
+			args[0] = find_path(args[0], tmp, er);
+			if (args[0] == er)
+			{
+				args[0] = search_cwd(filename);
+			}
+		}
 		free(line);
 		free(args);
 	} while (status);
