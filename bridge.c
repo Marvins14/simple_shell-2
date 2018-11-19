@@ -14,11 +14,11 @@
  * @line: Line passed from cmdline
  * Return: 1 if user entered a path/builtin, 2 if user entered a binary
  */
-int bridge(char *check, char **args, char *line)
+int bridge(char *check, char **args)
 {
 	int i = 0;
 
-	if (check_for_builtins(args, line) == 1)
+	if (builtins_checker(args) == 1)
 		return (1);
 	while (check[i] != '\0')
 	{
