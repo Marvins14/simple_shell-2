@@ -15,11 +15,11 @@
  * shell - Infinite loop that runs shell
  * Return: Void
  */
-void shell(void)
+void shell(int ac, char **av)
 {
 	char *line;
 	char **args;
-	int status;
+	int status = 1;
 	char *tmp = NULL;
 	char *er;
 	char *filename;
@@ -30,22 +30,23 @@ void shell(void)
 		write(1, "$ ", 2);
 		line = _getline();
 		args = split_line(line);
-		filename = args[0];
-		flow = bridge(filename, args, line);
-		if (flow == 1)
+		flow = bridge(args[0], args, line);
+		if (flow == 2)
 		{
-			status = execute_prog(args, line);
-		}
-		else if (flow == 2)
-		{
+			filename = args[0];
 			args[0] = find_path(args[0], tmp, er);
 			if (args[0] == er)
 			{
 				args[0] = search_cwd(filename);
 			}
 		}
+		status = execute_prog(args, line);
 		free(line);
 		free(args);
 	} while (status);
 		free(tmp);
+	if (!ac)
+		(void)ac;
+	if (!av)
+		(void)av;
 }
