@@ -1,25 +1,25 @@
-#include <stdio.h>
-#include <dirent.h>
-#include <sys/types.h>
-#include <stdlib.h>
-#include <string.h>
 #include "shell.h"
+/**
+ * find_path - finds path
+ * @filename: file name
+ * @tmp: temp
+ * @er: er
+ * Return: path
+ */
 
-char* find_path(char *filename)
+char *find_path(char *filename, char *tmp, char *er)
 {
 	DIR *dir;
 	struct dirent *sd;
-	char *file_path;
-	char *path;
-	int len = 0;
-	int i = 0;
-	int execute;
-	char *ret;
+	char *file_path, *path, *ret;
+	int len = 0, i = 0;
 
 	while (filename[len])
 		len++;
 	path = getenv("PATH");
-	file_path = strtok(path, ":");
+	tmp = save_path(tmp, path);
+	file_path = strtok(tmp, ":");
+	printf("PATH: %s\n", file_path);
 	while (file_path)
 	{
 		dir = opendir(file_path);
@@ -28,66 +28,63 @@ char* find_path(char *filename)
 			printf("Error! Unable to open directory.\n");
 			exit(1);
 		}
-		while (sd = readdir(dir))
+		while ((sd = readdir(dir)))
 		{
 			for (i = 0; sd->d_name[i] && filename[i]; i++)
 			{
 				if (sd->d_name[i] != filename[i])
 					break;
-				if (((i + 1) == (len - 1)) && !(sd->d_name[i + 1]))
+				if (i == (len - 1) && !(sd->d_name[i + 1]))
 				{
 					ret = strcat(file_path, "/");
 					ret = strcat(ret, filename);
-					execute = access(ret);
-					if (execute == 0)
-					{
-						closedir(dir);
-						return (ret);
-					}
+					path = NULL;
+					closedir(dir);
+					free(tmp);
+					return (ret);
 				}
 			}
 		}
 		closedir(dir);
 		file_path = strtok(NULL, ":");
 	}
-	ret = check_cwd(filename, len);
-	if (ret != "error")
-		return (ret);
-	return ("error");
+	path = NULL;
+	free(tmp);
+	return (er);
 }
-
-char* check_cwd(char *filename, int len)
+/**
+ *
+ *
+ *
+ *
+ */
+char* save_path(char *tmp, char *path)
 {
-	DIR *dir;
-	struct dirent *sd;
-	char *ret;
 	int i = 0;
-	int execute;
 
-	dir = opendir(".");
-	if (!dir)
+	printf("FIRST: %s\n", path);
+	if (!tmp)
 	{
-		printf("Error! Unable to open directory.\n");
-		exit(1);
-	}
-	while (sd = readdir(dir))
-	{
-		for (i = 0; sd->d_name[i] && filename[i]; i++)
+		tmp = malloc(sizeof(char) * 100);
+		while (path[i])
 		{
-			if (sd->d_name[i] != filename[i])
-				break;
-			if (((i + 1) == (len - 1)) && !(sd->d_name[i + 1]))
-			{
-				ret = "./";
-				ret = strcat(ret, filename);
-				execute = access(ret);
-				if (execute == 0)
-				{
-					closedir(dir);
-					return (ret);
-				}
-			}
+			tmp[i] = path[i];
+			i++;
+			tmp[i] = '\0';
 		}
+		i = 0;
+		return (tmp);
+	}
+	else
+	{
+		while (tmp[i])
+		{
+			path[i] = tmp[i];
+			i++;
+			path[i] = '\0';
+		}
+		i = 0;
+		return (path);
 	}
 	return ("error");
 }

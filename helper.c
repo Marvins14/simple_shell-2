@@ -1,15 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
-#include <stddef.h>
-#include <errno.h>
-#include <sys/types.h>
-#include <sys/wait.h>
 #include "shell.h"
-
-#define TOKENS_BUFFER_SIZE 64
-#define TOKEN_DELIMITERS " \t\r\n\a"
 
 /**
  * _getline - Gets line of user input
@@ -62,10 +51,11 @@ char **split_line(char *line)
  * @line: Buffer with line of input from user
  * Return: 1 if builtins exist, 0 if they don't
  */
-int check_for_builtins(char **args, char *line)
+int check_for_builtins(char **args, char *line, char **env)
 {
 	builtins_t list[] = {
 		{"exit", exit_shell},
+		{"env", env_shell},
 		{NULL, NULL}
 	};
 	int i;
@@ -74,7 +64,7 @@ int check_for_builtins(char **args, char *line)
 	{
 		if (_strcmp(list[i].arg, args[0]) == 0)
 		{
-			list[i].builtin(args, line);
+			list[i].builtin(args, line, env);
 			return (1);
 		}
 	}
@@ -112,4 +102,26 @@ int launch_prog(char **args)
 	}
 	(void)wpid;
 	return (1);
+}
+/**
+ * builtins_checker - Checks for builtins
+ * @args: Arguments passed from prompt
+ * @line: Buffer with line of input from user
+ * Return: 1 if builtins exist, 0 if they don't
+ */
+int builtins_checker(char **args)
+{
+	builtins_t list[] = {
+		{"exit", exit_shell},
+		{"env", env_shell},
+		{NULL, NULL}
+	};
+	int i;
+
+	for (i = 0; list[i].arg != NULL; i++)
+	{
+		if (_strcmp(list[i].arg, args[0]) == 0)
+			return (1);
+	}
+	return (0);
 }
