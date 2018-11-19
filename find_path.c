@@ -16,7 +16,6 @@ char* find_path(char *filename, char *tmp, char *er)
 	int i = 0;
 	char *ret;
 
-	printf("I am in find path\n");
 	while (filename[len])
 		len++;
 	path = getenv("PATH");
