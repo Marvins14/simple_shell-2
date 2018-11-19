@@ -5,7 +5,7 @@
  * @av: args passed to shell at beginning of prog
  * Return: Void
  */
-void shell(int ac, char **av)
+void shell(int ac, char **av, char **env)
 {
 	char *line;
 	char **args;
@@ -19,7 +19,7 @@ void shell(int ac, char **av)
 		prompt();
 		line = _getline();
 		args = split_line(line);
-		flow = bridge(args[0], args, line);
+		flow = bridge(args[0], args);
 		if (flow == 2)
 		{
 			filename = args[0];
@@ -29,7 +29,7 @@ void shell(int ac, char **av)
 				args[0] = search_cwd(filename);
 			}
 		}
-		status = execute_prog(args, line);
+		status = execute_prog(args, line, env);
 		free(line);
 		free(args);
 	} while (status);
@@ -37,4 +37,6 @@ void shell(int ac, char **av)
 		(void)ac;
 	if (!av)
 		(void)av;
+	if (!env)
+		(void)env;
 }

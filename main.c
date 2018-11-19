@@ -6,13 +6,15 @@
  * @av: Arr of args
  * Return: 0;
  */
-int main(int ac, char **av)
+int main(int ac, char **av, char **env)
 {
 	if (!ac)
 		(void)ac;
 	if (!av)
 		(void)av;
-	shell(ac, av);
+	if (!env)
+		(void)env;
+	shell(ac, av, env);
 	return (0);
 }
 
