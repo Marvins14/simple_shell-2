@@ -62,6 +62,7 @@ char* find_path(char *filename, char *tmp, char *er)
 					ret = strcat(ret, filename);
 					path = NULL;
 					closedir(dir);
+					free(tmp);
 					return (ret);
 				}
 			}
@@ -70,5 +71,6 @@ char* find_path(char *filename, char *tmp, char *er)
 		file_path = strtok(NULL, ":");
 	}
 	path = NULL;
+	free(tmp);
 	return (er);
 }

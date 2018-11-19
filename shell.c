@@ -13,6 +13,8 @@
 
 /**
  * shell - Infinite loop that runs shell
+ * @ac: Arg count
+ * @av: args passed to shell at beginning of prog
  * Return: Void
  */
 void shell(int ac, char **av)
@@ -44,7 +46,6 @@ void shell(int ac, char **av)
 		free(line);
 		free(args);
 	} while (status);
-		free(tmp);
 	if (!ac)
 		(void)ac;
 	if (!av)
