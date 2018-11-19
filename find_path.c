@@ -5,16 +5,20 @@
 #include <string.h>
 #include <unistd.h>
 #include "shell.h"
+/**
+ * find_path - finds path
+ * @filename: file name
+ * @tmp: temp
+ * @er: er
+ * Return: path
+ */
 
-char* find_path(char *filename, char *tmp, char *er)
+char *find_path(char *filename, char *tmp, char *er)
 {
 	DIR *dir;
 	struct dirent *sd;
-	char *file_path;
-	char *path;
-	int len = 0;
-	int i = 0;
-	char *ret;
+	char *file_path, *path, *ret;
+	int len = 0, i = 0;
 
 	printf("I am in find path\n");
 	while (filename[len])
