@@ -30,7 +30,7 @@ void shell(int ac, char **av, char **env)
 				args[0] = search_cwd(filename);
 			}
 		}
-		status = execute_prog(args, line, env);
+		status = execute_prog(args, line, env, flow);
 		free(line);
 		free(args);
 	} while (status);
