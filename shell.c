@@ -27,7 +27,6 @@ void shell(int ac, char **av)
 	char *filename;
 	int flow;
 
-	er = "error";
 	do {
 		write(1, "$ ", 2);
 		line = _getline();
