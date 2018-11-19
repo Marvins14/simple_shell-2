@@ -3,6 +3,7 @@
  * shell - Infinite loop that runs shell
  * @ac: Arg count
  * @av: args passed to shell at beginning of prog
+ * @env: Environment
  * Return: Void
  */
 void shell(int ac, char **av, char **env)
@@ -30,7 +31,7 @@ void shell(int ac, char **av, char **env)
 				args[0] = search_cwd(filename);
 			}
 		}
-		status = execute_prog(args, line, env);
+		status = execute_prog(args, line, env, flow);
 		free(line);
 		free(args);
 	} while (status);
