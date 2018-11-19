@@ -1,11 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
-#include <stddef.h>
-#include <errno.h>
-#include <sys/types.h>
-#include <sys/wait.h>
 #include "shell.h"
 /**
  * bridge - Will check to see whether we are dealing with a builtin or not
