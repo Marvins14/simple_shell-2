@@ -1,11 +1,9 @@
-#include <stdio.h>
-#include <dirent.h>
-#include <sys/types.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
 #include "shell.h"
-
+/**
+ * search_cwd - look for current working dir
+ * @filename: file name
+ * Return: current working dir
+ */
 char *search_cwd(char *filename)
 {
 	DIR *dir;
@@ -39,5 +37,5 @@ char *search_cwd(char *filename)
 		}
 	}
 	closedir(dir);
-	return("error");
+	return ("error");
 }

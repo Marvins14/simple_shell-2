@@ -1,20 +1,18 @@
-#include <stdio.h>
-#include <dirent.h>
-#include <sys/types.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
 #include "shell.h"
+/**
+ * find_path - finds path
+ * @filename: file name
+ * @tmp: temp
+ * @er: er
+ * Return: path
+ */
 
-char* find_path(char *filename, char *tmp, char *er)
+char *find_path(char *filename, char *tmp, char *er)
 {
 	DIR *dir;
 	struct dirent *sd;
-	char *file_path;
-	char *path;
-	int len = 0;
-	int i = 0;
-	char *ret;
+	char *file_path, *path, *ret;
+	int len = 0, i = 0;
 
 	while (filename[len])
 		len++;
@@ -61,6 +59,7 @@ char* find_path(char *filename, char *tmp, char *er)
 					ret = strcat(ret, filename);
 					path = NULL;
 					closedir(dir);
+					free(tmp);
 					return (ret);
 				}
 			}
@@ -69,5 +68,6 @@ char* find_path(char *filename, char *tmp, char *er)
 		file_path = strtok(NULL, ":");
 	}
 	path = NULL;
+	free(tmp);
 	return (er);
 }
