@@ -20,4 +20,5 @@ void exit_shell(char **args, char *line);
 int _strcmp(char *s1, char *s2);
 char* find_path(char *args, char *tmp, char *er);
 char* search_cwd(char *filename);
+int bridge(char *check, char **args, char *line);
 #endif
