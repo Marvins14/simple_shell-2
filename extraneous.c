@@ -27,7 +27,7 @@ int _strcmp(char *s1, char *s2)
  * prompt - prints $ for prompt
  * Return: void
  */
-int prompt(void)
+void prompt(void)
 {
 	write(1, "$ ", 3);
 }

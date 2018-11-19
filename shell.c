@@ -15,6 +15,7 @@ void shell(int ac, char **av)
 	char *filename;
 	int flow;
 
+	er = "Error";
 	do {
 		prompt();
 		line = _getline();
