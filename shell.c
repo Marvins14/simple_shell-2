@@ -32,11 +32,7 @@ void shell(void)
 		args = split_line(line);
 		filename = args[0];
 		flow = bridge(filename, args, line);
-		if (flow == 1)
-		{
-			status = execute_prog(args, line);
-		}
-		else if (flow == 2)
+		if (flow == 2)
 		{
 			args[0] = find_path(args[0], tmp, er);
 			if (args[0] == er)
@@ -44,6 +40,7 @@ void shell(void)
 				args[0] = search_cwd(filename);
 			}
 		}
+		status = execute_prog(args, line);
 		free(line);
 		free(args);
 	} while (status);
