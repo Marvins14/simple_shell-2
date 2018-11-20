@@ -2,9 +2,9 @@
 /**
  * find_path - finds path
  * @filename: file name
- * @tmp: temp
- * @er: er
- * Return: path
+ * @tmp: saves the PATH string
+ * @er: an error message
+ * Return: Success - path/filename, failure - er
  */
 
 char *find_path(char *filename, char *tmp, char *er)
@@ -46,9 +46,13 @@ char *find_path(char *filename, char *tmp, char *er)
 
 /**
  *read_dir - opens and reads directory file names in search of fil
- *@er: 
- *
- *
+ *@er: error message
+ *@s: struct containing info about a files in a directory
+ *@fil: name of file being searched for
+ *@fp: directory being searched through
+ *@t: string containing the PATH variable's value
+ *@l: length of filename
+ *Return: success - path of fil/fil, else er
  */
 char *read_dir(char *er, struct dirent *s, char *fil, int l, char *fp, char *t)
 {
@@ -70,10 +74,11 @@ char *read_dir(char *er, struct dirent *s, char *fil, int l, char *fp, char *t)
 	return (er);
 }
 /**
+ *save_path - saves a copy of the PATH string
+ *@tmp: copy to be made of PATH
+ *@path: string containing original PATH value
  *
- *
- *
- *
+ *Return: success - tmp first time, path every other time, else error
  */
 char *save_path(char *tmp, char *path)
 {
