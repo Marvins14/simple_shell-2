@@ -29,7 +29,10 @@ int _strcmp(char *s1, char *s2)
  */
 void prompt(void)
 {
-	write(1, "$ ", 3);
+	if (isatty(0))
+	{
+		write(1, "$ ", 3);
+	}
 }
 /**
  * _strstr - locates sub string
