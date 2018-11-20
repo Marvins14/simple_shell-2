@@ -4,7 +4,7 @@
  * @filename: file name
  * Return: current working dir
  */
-char *search_cwd(char *filename)
+char *search_cwd(char *filename, char *er)
 {
 	DIR *dir;
 	struct dirent *sd;
@@ -19,7 +19,7 @@ char *search_cwd(char *filename)
 	if (!dir)
 	{
 		printf("Error! Unable to open directory.\n");
-		exit(1);
+		exit(0);
 	}
 	while ((sd = readdir(dir)))
 	{
@@ -32,10 +32,13 @@ char *search_cwd(char *filename)
 				strcpy(ret, "./");
 				strcat(ret, filename);
 				closedir(dir);
-				return (ret);
+				if (!(access(ret, X_OK)))
+					return (ret);
+				else
+					write(2, er, 5);
 			}
 		}
 	}
 	closedir(dir);
-	return ("error");
+	return (er);
 }

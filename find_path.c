@@ -16,7 +16,7 @@ char *find_path(char *filename, char *tmp, char *er)
 
 	while (filename[len])
 		len++;
-	path = getenv("PATH");
+	path = _getenv("PATH");
 	tmp = save_path(tmp, path);
 	file_path = strtok(tmp, ":");
 	while (file_path)
@@ -25,7 +25,7 @@ char *find_path(char *filename, char *tmp, char *er)
 		if (!dir)
 		{
 			printf("Error! Unable to open directory.\n");
-			exit(1);
+			exit(0);
 		}
 		while ((sd = readdir(dir)))
 		{
@@ -33,7 +33,8 @@ char *find_path(char *filename, char *tmp, char *er)
 			if (ret != er)
 			{
 				closedir(dir);
-				return (ret);
+				if (!(access(ret, X_OK)))
+					return (ret);
 			}
 		}
 		closedir(dir);

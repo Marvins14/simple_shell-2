@@ -12,7 +12,7 @@ void exit_shell(char **args, char *line, char **env)
 	free(args);
 	free(line);
 	(void)env;
-	exit(98);
+	exit(0);
 }
 /**
  * env_shell - Prints shell environment
