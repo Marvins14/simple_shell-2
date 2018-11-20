@@ -31,7 +31,7 @@ void prompt(void)
 {
 	if (isatty(0))
 	{
-		write(1, "$ ", 3);
+		write(1, "$ ", 2);
 	}
 }
 /**
