@@ -6,6 +6,10 @@
 .B ./hsh
 .SH DESCRIPTION
 This program is a simple shell that has been made by the Holberton guidelines. It contains basic features and functions found in other shell programs.
+.SS Overview
+This shell is an executable that reads lines from the prompt, interprets them, and generally executes other commands. It runs by compiling all .c files in the repository to create an executable
+.SS Path Search
+When locating a command, this shell first looks to see if it has an executable by that name in the PATH of env. Then it looks for builtin commands by that name.
 
 .SH MODES
 .B hsh
