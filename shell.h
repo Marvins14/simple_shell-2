@@ -40,7 +40,7 @@ void prompt(void);
 int builtins_checker(char **args);
 char *save_path(char *tmp, char *path);
 char *read_dir(char *er, struct dirent *sd, char *file, int l, char *fp, char *t);
-/** int _getenv(char *env); */
+char *_getenv(char *env); 
 char *_strstr(char *haystack, char *needle);
 int _strlen(char *s);
 #endif

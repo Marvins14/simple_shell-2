@@ -4,7 +4,7 @@
  * @env: input
  * Return: env without =
  */
-int *_getenv(char *env)
+char *_getenv(char *env)
 {
 	int i = 0, n = 0;
 	char *temp, *res;
