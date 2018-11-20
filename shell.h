@@ -39,7 +39,7 @@ int bridge(char *check, char **args);
 void prompt(void);
 int builtins_checker(char **args);
 char *save_path(char *tmp, char *path);
-char *read_dir(char *er, struct dirent *sd, char *file, int l, char *fp, char *t);
+char *read_dir(char *er, struct dirent *s, char *fil, int l, char *f, char *t);
 char *_getenv(char *env); 
 char *_strstr(char *haystack, char *needle);
 int _strlen(char *s);
