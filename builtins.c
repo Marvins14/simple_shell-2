@@ -22,11 +22,13 @@ void exit_shell(char **args, char *line, char **env)
  */
 void env_shell(char **args, char *line, char **env)
 {
-	int i = 0;
+	int size, i = 0;
 
 	while (env[i] != NULL)
 	{
-		printf("%s\n", env[i]);
+		size = _strlen(env[i]);
+		write(1, env[i], size);
+		write(1, "\n", 1);
 		i++;
 	}
 	(void)args;
