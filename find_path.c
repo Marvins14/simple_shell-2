@@ -16,7 +16,7 @@ char *find_path(char *filename, char *tmp, char *er)
 
 	while (filename[len])
 		len++;
-	path = getenv("PATH");
+	path = _getenv("PATH");
 	tmp = save_path(tmp, path);
 	file_path = strtok(tmp, ":");
 	while (file_path)
