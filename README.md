@@ -37,10 +37,9 @@ $
 ```
 ---
 
-## Examples
+## Example
 
-* Insert GIF of compiling + interactive mode
-* Insert GIF of compiling + non-interactive mode
+![example](https://media.giphy.com/media/1tjn23NwMZboA6cz4E/giphy.gif)
 
 ---
 
