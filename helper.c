@@ -13,8 +13,7 @@ char *_getline(void)
 	temp = getline(&line, &size, stdin);
 	if (temp == EOF)
 	{
-		write(1, "\n", 1);
-		exit(1);
+		_exit(1);
 	}
 	return (line);
 }
