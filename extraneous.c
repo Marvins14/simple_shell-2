@@ -29,7 +29,7 @@ int _strcmp(char *s1, char *s2)
  */
 void prompt(void)
 {
-	if (isatty(0))
+	if (isatty(STDIN_FILENO))
 	{
 		write(1, "$ ", 2);
 	}
