@@ -13,8 +13,7 @@
 #define TOKENS_BUFFER_SIZE 64
 #define LINE_SIZE 1024
 #define TOKEN_DELIMITERS " \t\r\n\a"
-
-
+extern char **environ;
 /**
  * struct builtins - Has builtins and associated funcs
  * @arg: Builtins name
@@ -28,7 +27,7 @@ typedef struct builtins
 void shell(int ac, char **av, char **env);
 char *_getline(void);
 char **split_line(char *line);
-int execute_prog(char **args, char *line, char **env);
+int execute_prog(char **args, char *line, char **env, int flow);
 int check_for_builtins(char **args, char *line, char **env);
 int launch_prog(char **args);
 void exit_shell(char **args, char *line, char **env);
@@ -39,4 +38,9 @@ char *search_cwd(char *filename);
 int bridge(char *check, char **args);
 void prompt(void);
 int builtins_checker(char **args);
+char *save_path(char *tmp, char *path);
+char *read_dir(char *er, struct dirent *sd, char *file, int l, char *fp, char *t);
+/** int _getenv(char *env); */
+char *_strstr(char *haystack, char *needle);
+int _strlen(char *s);
 #endif
