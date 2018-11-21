@@ -25,7 +25,7 @@ char *find_path(char *filename, char *tmp, char *er)
 		if (!dir)
 		{
 			printf("Error! Unable to open directory.\n");
-			return(8);
+			return(0);
 		}
 		while ((sd = readdir(dir)))
 		{
